@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, Grid } from '@material-ui/core';
 
-import { SearchBoxContainer, SearchBoxButtonGrid, SearchBoxButton } from './styled';
+import { SearchBoxContainer, SearchBoxInput, SearchBoxButtonGrid, SearchBoxButton } from './styled';
 import { useSearchQueryHandler } from './hooks';
 
 export const SearchBox = () => {
@@ -10,11 +10,11 @@ export const SearchBox = () => {
   return (
     <SearchBoxContainer>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={8} lg={9}>
+        <SearchBoxInput>
           <TextField label="Search query" value={query} onChange={handleInputChange} fullWidth />
-        </Grid>
+        </SearchBoxInput>
 
-        <SearchBoxButtonGrid item xs={12} md={4} lg={3}>
+        <SearchBoxButtonGrid>
           <SearchBoxButton variant="contained" color="primary" onClick={handleSubmit}>
             Search
           </SearchBoxButton>
