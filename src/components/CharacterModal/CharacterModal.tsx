@@ -14,7 +14,7 @@ import {
   CharacterModalButtonContainer,
   CharacterModalCloseButton,
 } from './styled';
-import { EpisodesList } from './components';
+// import { EpisodesList } from './components';
 
 interface CharacterModalProps {
   character: Character;
@@ -56,9 +56,9 @@ export const CharacterModal: FC<CharacterModalProps> = ({ character }) => {
           </Button>
         </CharacterModalButtonContainer>
 
-        <Grid container>
-          <EpisodesList episodes={character.episode} />
-        </Grid>
+        {/*<Grid container>*/}
+        {/*  <EpisodesList episodes={character.episode} />*/}
+        {/*</Grid>*/}
       </CharacterModalContainer>
     </Modal>
   );

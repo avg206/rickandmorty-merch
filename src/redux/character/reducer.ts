@@ -2,6 +2,7 @@ import { createReducer, SerializedError } from '@reduxjs/toolkit';
 
 import { actionTypeEndsWith } from 'src/utils/redux';
 
+import { searchCharacters } from './actions';
 import { charactersAdapter } from './adapter';
 import { characterSliceName } from './constants';
 
@@ -18,6 +19,10 @@ export const initialState = charactersAdapter.getInitialState<CharacterState>({
 
 const characterReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(searchCharacters.fulfilled, (state, action) => {
+      state.totalAmount = action.payload.info.count;
+      charactersAdapter.setAll(state, action.payload.results);
+    })
     .addMatcher(actionTypeEndsWith(characterSliceName, '/pending'), (state) => {
       state.loading = true;
       state.error = undefined;
