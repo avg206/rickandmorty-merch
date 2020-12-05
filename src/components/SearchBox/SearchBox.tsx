@@ -5,7 +5,7 @@ import { SearchBoxContainer, SearchBoxInput, SearchBoxButtonGrid, SearchBoxButto
 import { useSearchQueryHandler } from './hooks';
 
 export const SearchBox = () => {
-  const { query, handleInputChange, handleSubmit } = useSearchQueryHandler();
+  const { query, handleInputChange, handleSubmit, handleReset, canReset } = useSearchQueryHandler();
 
   return (
     <SearchBoxContainer>
@@ -19,7 +19,7 @@ export const SearchBox = () => {
             Search
           </SearchBoxButton>
 
-          <SearchBoxButton variant="contained" disabled>
+          <SearchBoxButton variant="contained" disabled={!canReset} onClick={handleReset}>
             Reset
           </SearchBoxButton>
         </SearchBoxButtonGrid>

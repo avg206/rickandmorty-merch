@@ -3,7 +3,7 @@ import { createReducer, SerializedError } from '@reduxjs/toolkit';
 import { actionTypeEndsWith } from 'src/utils/redux';
 import { getQueryStringFromUrl } from 'src/utils/url';
 
-import { searchCharacters, changePage } from './actions';
+import { searchCharacters, changePage, resetState } from './actions';
 import { charactersAdapter } from './adapter';
 import { characterSliceName } from './constants';
 
@@ -26,6 +26,7 @@ const characterReducer = createReducer(initialState, (builder) => {
     .addCase(changePage, (state, action) => {
       state.internalPage = action.payload;
     })
+    .addCase(resetState, (state) => initialState)
     .addCase(searchCharacters.fulfilled, (state, action) => {
       state.totalAmount = action.payload.info.count;
       state.nextParams = getQueryStringFromUrl(action.payload.info.next);

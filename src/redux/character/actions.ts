@@ -7,6 +7,8 @@ import { characterSliceName } from './constants';
 
 export const changePage = createAction<number>(`${characterSliceName}/changePage`);
 
+export const resetState = createAction(`${characterSliceName}/resetState`);
+
 export const searchCharacters = createAsyncThunk(`${characterSliceName}/searchCharacters`, (params: string) =>
   apiCall<ApiResponse<Character>>(`https://rickandmortyapi.com/api/character?${params}`)
 );
