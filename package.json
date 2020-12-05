@@ -1,0 +1,45 @@
+{
+  "name": "rickandmorty-merch",
+  "version": "0.1.0",
+  "author": "Anatoli Huseu <avg.tolik@gmail.com>",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "10.0.3",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@avg206/frontend-config": "github:avg206/frontend-config",
+    "@types/node": "^14.14.10",
+    "@types/react": "^17.0.0",
+    "typescript": "^4.1.2"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/@avg206/frontend-config/eslint/typescript.js"
+  },
+  "eslintIgnore": [
+    "node_modules",
+    "ios",
+    "android"
+  ],
+  "prettier": "@avg206/frontend-config/prettier",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
