@@ -4,11 +4,10 @@ import { Provider } from 'react-redux';
 import { CssBaseline, Container, makeStyles } from '@material-ui/core';
 
 import store from 'src/redux/store';
-import { SearchBox } from 'src/components';
+import { SearchBox, SearchResults } from 'src/components';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100%',
     minHeight: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -30,6 +29,8 @@ const Home = () => {
           <CssBaseline />
 
           <SearchBox />
+
+          <SearchResults />
         </Container>
       </Provider>
     </>
