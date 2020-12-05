@@ -1,7 +1,5 @@
 import { HTTPMethod, ApiError } from 'src/types';
 
-const baseUrl = 'https://rickandmortyapi.com/api';
-
 export const handleFetchJSONResponse = async <T>(response: Response): Promise<T> => {
   let data;
 
@@ -33,8 +31,6 @@ export const handleApiError = <E extends { message?: string }>({ error }: { erro
   throw new Error(error?.message);
 };
 
-export async function apiCall<R, P = unknown>(path: string) {
-  const url = `${baseUrl}${path}`;
-
+export async function apiCall<R, P = unknown>(url: string) {
   return httpCall<R, P>(url).catch(handleApiError);
 }
