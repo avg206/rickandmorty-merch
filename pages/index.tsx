@@ -1,11 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
+import { Provider } from 'react-redux';
 import { CssBaseline, Container, makeStyles } from '@material-ui/core';
 
-import { SearchBox, CharacterView, CharacterModal } from 'src/components';
-
-import character1 from 'mocks/character-1';
-import character2 from 'mocks/character-2';
+import store from 'src/redux/store';
+import { SearchBox } from 'src/components';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,16 +25,13 @@ const Home = () => {
         <title>Rick and Morty Characters searcher</title>
       </Head>
 
-      <Container className={classes.root}>
-        <CssBaseline />
+      <Provider store={store}>
+        <Container className={classes.root}>
+          <CssBaseline />
 
-        <SearchBox />
-
-        <CharacterView character={character1} />
-        <CharacterView character={character2} />
-
-        <CharacterModal character={character1} />
-      </Container>
+          <SearchBox />
+        </Container>
+      </Provider>
     </>
   );
 };
