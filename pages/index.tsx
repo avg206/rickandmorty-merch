@@ -2,7 +2,10 @@ import React from 'react';
 import Head from 'next/head';
 import { CssBaseline, Container, makeStyles } from '@material-ui/core';
 
-import { SearchBox } from 'src/components';
+import { SearchBox, CharacterView } from 'src/components';
+
+import character1 from 'mocks/character-1';
+import character2 from 'mocks/character-2';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +30,9 @@ const Home = () => {
         <CssBaseline />
 
         <SearchBox />
+
+        <CharacterView character={character1} />
+        <CharacterView character={character2} />
       </Container>
     </>
   );
