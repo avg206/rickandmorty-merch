@@ -12,6 +12,7 @@ import {
   CharacterModalChip,
   CharacterModalDetailsRow,
   CharacterModalButtonContainer,
+  CharacterModalCloseButton,
 } from './styled';
 import { EpisodesList } from './components';
 
@@ -26,6 +27,8 @@ export const CharacterModal: FC<CharacterModalProps> = ({ character }) => {
   return (
     <Modal open aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
       <CharacterModalContainer>
+        <CharacterModalCloseButton />
+
         <Grid container direction="row">
           <CharacterModalAvatar alt={character.name} src={character.image} sizes="100" variant="rounded" />
 

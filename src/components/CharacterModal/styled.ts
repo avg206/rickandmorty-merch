@@ -1,4 +1,5 @@
 import { Avatar, Paper, Chip, styled, Grid } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 
 export const CharacterModalContainer = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2, 4),
@@ -47,4 +48,14 @@ export const CharacterModalDetailsRow = styled('div')(({ theme }) => ({
 export const CharacterModalButtonContainer = styled(Grid)(({ theme }) => ({
   margin: theme.spacing(6, 0, 2),
   justifyContent: 'center',
+}));
+
+export const CharacterModalCloseButton = styled(CloseIcon)(({ theme }) => ({
+  position: 'absolute',
+  top: theme.spacing(2),
+  right: theme.spacing(2),
+  cursor: 'pointer',
+  '&:hover': {
+    opacity: 0.5,
+  },
 }));
