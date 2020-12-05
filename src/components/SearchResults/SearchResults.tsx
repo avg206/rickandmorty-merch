@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Loader, CharacterView } from 'src/components';
-import { selectCharacterState, characterSelectors } from 'src/redux/character';
+import { selectCharacterState, selectCharactersList } from 'src/redux/character';
 
 export const SearchResults: FC = () => {
   const loading = useSelector(selectCharacterState);
-  const characters = useSelector(characterSelectors.selectAll);
+  const characters = useSelector(selectCharactersList);
 
   if (loading) {
     return <Loader />;

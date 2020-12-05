@@ -4,16 +4,18 @@ import { actionTypeEndsWith } from 'src/utils/redux';
 
 import { searchCharacters } from './actions';
 import { charactersAdapter } from './adapter';
-import { characterSliceName } from './constants';
+import { characterSliceName, externalPageSize } from './constants';
 
 interface CharacterState {
   loading: boolean;
   totalAmount: number;
+  internalPage: number;
   error?: SerializedError;
 }
 
 export const initialState = charactersAdapter.getInitialState<CharacterState>({
   loading: false,
+  internalPage: 1,
   totalAmount: 0,
 });
 
@@ -21,6 +23,7 @@ const characterReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(searchCharacters.fulfilled, (state, action) => {
       state.totalAmount = action.payload.info.count;
+
       charactersAdapter.setAll(state, action.payload.results);
     })
     .addMatcher(actionTypeEndsWith(characterSliceName, '/pending'), (state) => {
