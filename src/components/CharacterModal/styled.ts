@@ -1,4 +1,4 @@
-import { Avatar, Paper, Chip, styled } from '@material-ui/core';
+import { Avatar, Paper, Chip, styled, Grid } from '@material-ui/core';
 
 export const CharacterModalContainer = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2, 4),
@@ -42,4 +42,9 @@ export const CharacterModalDetailsRow = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'row',
   margin: theme.spacing(0, 0, 1, 0),
+}));
+
+export const CharacterModalButtonContainer = styled(Grid)(({ theme }) => ({
+  margin: theme.spacing(6, 0, 2),
+  justifyContent: 'center',
 }));

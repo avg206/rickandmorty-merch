@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { Character } from 'src/types';
 
@@ -27,4 +27,13 @@ export const useCharacterDetails = (character: Character) => {
       ].filter(({ value }) => !!value),
     [character]
   );
+};
+
+/**
+ * Handle logic for `Call To Action`
+ */
+export const useCallToAction = () => {
+  return useCallback(() => {
+    alert('Merchandise was clicked, maybe later redirect will be implemented :)');
+  }, []);
 };

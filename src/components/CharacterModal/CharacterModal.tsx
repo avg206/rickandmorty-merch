@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { Grid, Modal, Typography } from '@material-ui/core';
+import { Button, Grid, Modal, Typography } from '@material-ui/core';
 
 import { Character } from 'src/types';
 
-import { useCharacterDetails } from './hooks';
+import { useCharacterDetails, useCallToAction } from './hooks';
 import {
   CharacterModalContainer,
   CharacterModalAvatar,
@@ -11,6 +11,7 @@ import {
   CharacterModalNameRow,
   CharacterModalChip,
   CharacterModalDetailsRow,
+  CharacterModalButtonContainer,
 } from './styled';
 import { EpisodesList } from './components';
 
@@ -20,6 +21,7 @@ interface CharacterModalProps {
 
 export const CharacterModal: FC<CharacterModalProps> = ({ character }) => {
   const detailsItems = useCharacterDetails(character);
+  const handleCTA = useCallToAction();
 
   return (
     <Modal open aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
@@ -44,6 +46,12 @@ export const CharacterModal: FC<CharacterModalProps> = ({ character }) => {
             ))}
           </CharacterModalDetails>
         </Grid>
+
+        <CharacterModalButtonContainer container>
+          <Button variant="contained" color="primary" onClick={handleCTA}>
+            Buy merchandise
+          </Button>
+        </CharacterModalButtonContainer>
 
         <Grid container>
           <EpisodesList episodes={character.episode} />
