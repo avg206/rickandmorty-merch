@@ -2,12 +2,15 @@ import React from 'react';
 import Head from 'next/head';
 import { CssBaseline, Container, makeStyles } from '@material-ui/core';
 
+import { SearchBox } from 'src/components';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
     minHeight: '100%',
     display: 'flex',
     flexDirection: 'column',
+    padding: theme.spacing(4, 2),
   },
 }));
 
@@ -22,6 +25,8 @@ const Home = () => {
 
       <Container className={classes.root}>
         <CssBaseline />
+
+        <SearchBox />
       </Container>
     </>
   );
