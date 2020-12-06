@@ -3,7 +3,7 @@ import { createReducer, SerializedError } from '@reduxjs/toolkit';
 import { actionTypeEndsWith } from 'src/utils/redux';
 import { getQueryStringFromUrl } from 'src/utils/url';
 
-import { searchCharacters, changePage, resetState } from './actions';
+import { searchCharacters, changePage, resetState, openDetails, closeDetails } from './actions';
 import { charactersAdapter } from './adapter';
 import { characterSliceName } from './constants';
 
@@ -13,6 +13,7 @@ interface CharacterState {
   internalPage: number;
   nextParams?: string;
   error?: SerializedError;
+  openCharacterId?: number;
 }
 
 export const initialState = charactersAdapter.getInitialState<CharacterState>({
@@ -23,6 +24,12 @@ export const initialState = charactersAdapter.getInitialState<CharacterState>({
 
 const characterReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(openDetails, (state, action) => {
+      state.openCharacterId = action.payload;
+    })
+    .addCase(closeDetails, (state) => {
+      state.openCharacterId = undefined;
+    })
     .addCase(changePage, (state, action) => {
       state.internalPage = action.payload;
     })

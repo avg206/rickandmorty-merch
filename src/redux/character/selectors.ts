@@ -15,6 +15,20 @@ export const selectCharactersTotalAmount = (state: RootState) => selectCharacter
 
 export const selectCharacterState = (state: RootState) => selectCharacter(state).loading;
 
+export const selectOpenedCharacterId = (state: RootState) => selectCharacter(state).openCharacterId;
+
+export const selectOpenedCharacter = createSelector(
+  selectOpenedCharacterId,
+  characterSelectors.selectEntities,
+  (id, entries) => {
+    if (!id || !entries[id]) {
+      return undefined;
+    }
+
+    return entries[id];
+  }
+);
+
 export const selectCharactersList = createSelector(
   characterSelectors.selectAll,
   selectCharactersInternalPage,

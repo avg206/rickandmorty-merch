@@ -1,15 +1,16 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Loader, CharacterView, Pagination } from 'src/components';
+import { Loader, CharacterView, Pagination, CharacterModal } from 'src/components';
 import { selectCharacterState, selectCharactersList } from 'src/redux/character';
 
-import { useCharacterPagination } from './hooks';
+import { useCharacterPagination, useCharacterOpener } from './hooks';
 
 export const SearchResults: FC = () => {
   const loading = useSelector(selectCharacterState);
   const characters = useSelector(selectCharactersList);
   const pagination = useCharacterPagination();
+  const onCharacterOpen = useCharacterOpener();
 
   if (loading) {
     return <Loader />;
@@ -18,10 +19,12 @@ export const SearchResults: FC = () => {
   return (
     <>
       {characters.map((character) => (
-        <CharacterView key={character.id} character={character} />
+        <CharacterView key={character.id} character={character} onCharacterOpen={onCharacterOpen} />
       ))}
 
       <Pagination {...pagination} />
+
+      <CharacterModal />
     </>
   );
 };

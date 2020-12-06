@@ -1,3 +1,4 @@
+export * from './CharacterDetails/CharacterDetails';
 export * from './CharacterModal/CharacterModal';
 export * from './CharacterView/CharacterView';
 export * from './Pagination/Pagination';

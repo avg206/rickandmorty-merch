@@ -1,10 +1,15 @@
 import { Avatar, Paper, Typography, styled } from '@material-ui/core';
+import greyColor from '@material-ui/core/colors/grey';
 
 export const CharacterViewContainer = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2, 4),
   margin: theme.spacing(0, 0, 2, 0),
   display: 'flex',
   flexDirection: 'row',
+  '&:hover': {
+    cursor: 'pointer',
+    backgroundColor: greyColor['200'],
+  },
 }));
 
 export const CharacterViewAvatar = styled(Avatar)(({ theme }) => ({

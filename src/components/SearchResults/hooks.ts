@@ -7,6 +7,7 @@ import {
   characterSelectors,
   internalPageSize,
   searchCharacters,
+  openDetails,
 } from 'src/redux/character';
 import { PaginationConfig } from 'src/types';
 
@@ -46,4 +47,18 @@ export const useCharacterPagination = (): PaginationConfig => {
     onPrev,
     onNext,
   };
+};
+
+/**
+ * Callback to open character details with `id` as an argument
+ */
+export const useCharacterOpener = () => {
+  const dispatch = useDispatch();
+
+  return useCallback(
+    (id: number) => {
+      dispatch(openDetails(id));
+    },
+    [dispatch]
+  );
 };
