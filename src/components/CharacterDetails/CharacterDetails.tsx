@@ -8,13 +8,14 @@ import { useCharacterDetails, useCallToAction } from './hooks';
 import {
   CharacterDetailsContainer,
   CharacterDetailsAvatar,
-  CharacterDetailsDetails,
+  CharacterDetailsInformation,
   CharacterDetailsNameRow,
   CharacterDetailsChip,
   CharacterDetailsDetailsRow,
-  CharacterDetailsButtonContainer,
+  CharacterDetailsButtonCTA,
   CharacterDetailsCloseButton,
 } from './styled';
+
 interface CharacterDetailsProps {
   character: Character;
   onClose: () => void;
@@ -31,7 +32,7 @@ export const CharacterDetails: FC<CharacterDetailsProps> = forwardRef(({ charact
       <Grid container direction="row">
         <CharacterDetailsAvatar alt={character.name} src={character.image} sizes="100" variant="rounded" />
 
-        <CharacterDetailsDetails>
+        <CharacterDetailsInformation>
           <CharacterDetailsNameRow>
             <Typography variant="h5">{character.name}</Typography>
             <CharacterDetailsChip size="small" label={character.status} color="secondary" />
@@ -46,14 +47,14 @@ export const CharacterDetails: FC<CharacterDetailsProps> = forwardRef(({ charact
               </Typography>
             </CharacterDetailsDetailsRow>
           ))}
-        </CharacterDetailsDetails>
+        </CharacterDetailsInformation>
       </Grid>
 
-      <CharacterDetailsButtonContainer container>
+      <CharacterDetailsButtonCTA container>
         <Button variant="contained" color="primary" onClick={handleCTA}>
           Buy merchandise
         </Button>
-      </CharacterDetailsButtonContainer>
+      </CharacterDetailsButtonCTA>
 
       <Grid container>
         <EpisodesList episodes={character.episode} />

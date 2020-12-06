@@ -7,10 +7,8 @@ const LoaderContainer = styled('div')(() => ({
   justifyContent: 'center',
 }));
 
-export const Loader = () => {
-  return (
-    <LoaderContainer>
-      <CircularProgress size={50} />
-    </LoaderContainer>
-  );
-};
+export const Loader = () => (
+  <LoaderContainer>
+    <CircularProgress size={50} />
+  </LoaderContainer>
+);

@@ -21,7 +21,7 @@ export const CharacterDetailsAvatar = styled(Avatar)(({ theme }) => ({
   height: theme.spacing(22),
 }));
 
-export const CharacterDetailsDetails = styled('div')(() => ({
+export const CharacterDetailsInformation = styled('div')(() => ({
   flex: 1,
   overflow: 'hidden',
   display: 'flex',
@@ -46,7 +46,7 @@ export const CharacterDetailsDetailsRow = styled('div')(({ theme }) => ({
   margin: theme.spacing(0, 0, 1, 0),
 }));
 
-export const CharacterDetailsButtonContainer = styled(Grid)(({ theme }) => ({
+export const CharacterDetailsButtonCTA = styled(Grid)(({ theme }) => ({
   margin: theme.spacing(6, 0, 6),
   justifyContent: 'center',
 }));
