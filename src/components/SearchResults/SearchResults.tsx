@@ -12,6 +12,8 @@ export const SearchResults: FC = () => {
   const pagination = useCharacterPagination();
   const onCharacterOpen = useCharacterOpener();
 
+  const hasAnyCharacterLoaded = characters.length > 0;
+
   if (loading) {
     return <Loader />;
   }
@@ -22,7 +24,7 @@ export const SearchResults: FC = () => {
         <CharacterView key={character.id} character={character} onCharacterOpen={onCharacterOpen} />
       ))}
 
-      <Pagination {...pagination} />
+      {hasAnyCharacterLoaded && <Pagination {...pagination} />}
 
       <CharacterModal />
     </>

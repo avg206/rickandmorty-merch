@@ -44,6 +44,8 @@ export const useCharacterPagination = (): PaginationConfig => {
   return {
     hasPrevPage,
     hasNextPage,
+    page: internalPage,
+    totalPages: Math.ceil(totalAmount / internalPageSize),
     onPrev,
     onNext,
   };
