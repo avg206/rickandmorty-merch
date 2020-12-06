@@ -2,12 +2,12 @@ import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  changePage,
+  openPage,
   selectCharacter,
   characterSelectors,
   internalPageSize,
   searchCharacters,
-  openDetails,
+  openCharacterDetails,
 } from 'src/redux/character';
 import { PaginationConfig } from 'src/types';
 
@@ -16,14 +16,14 @@ import { PaginationConfig } from 'src/types';
  */
 export const useCharacterPagination = (): PaginationConfig => {
   const dispatch = useDispatch();
-  const { internalPage, nextParams, totalAmount } = useSelector(selectCharacter);
+  const { internalPage, nextParams, totalItems } = useSelector(selectCharacter);
   const internalTotalAmount = useSelector(characterSelectors.selectTotal);
 
   const hasPrevPage = internalPage > 1;
-  const hasNextPage = internalPage * internalPageSize < totalAmount;
+  const hasNextPage = internalPage * internalPageSize < totalItems;
 
   const onPrev = useCallback(() => {
-    dispatch(changePage(Math.max(internalPage - 1, 1)));
+    dispatch(openPage(Math.max(internalPage - 1, 1)));
   }, [dispatch, internalPage]);
 
   const onNext = useCallback(() => {
@@ -32,8 +32,8 @@ export const useCharacterPagination = (): PaginationConfig => {
       dispatch(searchCharacters(nextParams));
     }
 
-    if (internalPage * internalPageSize < totalAmount) {
-      dispatch(changePage(internalPage + 1));
+    if (internalPage * internalPageSize < totalItems) {
+      dispatch(openPage(internalPage + 1));
     }
   }, [dispatch, internalPage, internalTotalAmount, nextParams]);
 
@@ -41,7 +41,7 @@ export const useCharacterPagination = (): PaginationConfig => {
     hasPrevPage,
     hasNextPage,
     page: internalPage,
-    totalPages: Math.ceil(totalAmount / internalPageSize),
+    totalPages: Math.ceil(totalItems / internalPageSize),
     onPrev,
     onNext,
   };
@@ -55,7 +55,7 @@ export const useCharacterOpener = () => {
 
   return useCallback(
     (id: number) => {
-      dispatch(openDetails(id));
+      dispatch(openCharacterDetails(id));
     },
     [dispatch]
   );

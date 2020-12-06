@@ -3,39 +3,39 @@ import { createReducer, SerializedError } from '@reduxjs/toolkit';
 import { actionTypeEndsWith } from 'src/utils/redux';
 import { getQueryStringFromUrl } from 'src/utils/url';
 
-import { searchCharacters, changePage, resetState, openDetails, closeDetails } from './actions';
+import { searchCharacters, openPage, resetSearch, openCharacterDetails, closeCharacterDetails } from './actions';
 import { charactersAdapter } from './adapter';
 import { characterSliceName } from './constants';
 
 interface CharacterState {
   loading: boolean;
-  totalAmount: number;
+  totalItems: number;
   internalPage: number;
   nextParams?: string;
   error?: SerializedError;
-  openCharacterId?: number;
+  openedCharacterId?: number;
 }
 
 export const initialState = charactersAdapter.getInitialState<CharacterState>({
   loading: false,
   internalPage: 1,
-  totalAmount: 0,
+  totalItems: 0,
 });
 
 const characterReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(openDetails, (state, action) => {
-      state.openCharacterId = action.payload;
+    .addCase(openCharacterDetails, (state, action) => {
+      state.openedCharacterId = action.payload;
     })
-    .addCase(closeDetails, (state) => {
-      state.openCharacterId = undefined;
+    .addCase(closeCharacterDetails, (state) => {
+      state.openedCharacterId = undefined;
     })
-    .addCase(changePage, (state, action) => {
+    .addCase(openPage, (state, action) => {
       state.internalPage = action.payload;
     })
-    .addCase(resetState, (state) => initialState)
+    .addCase(resetSearch, (state) => initialState)
     .addCase(searchCharacters.fulfilled, (state, action) => {
-      state.totalAmount = action.payload.info.count;
+      state.totalItems = action.payload.info.count;
       state.nextParams = getQueryStringFromUrl(action.payload.info.next);
 
       charactersAdapter.addMany(state, action.payload.results);

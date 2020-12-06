@@ -1,16 +1,17 @@
 import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { searchCharacters, resetState, selectCharactersTotalAmount } from 'src/redux/character';
+import { searchCharacters, resetSearch, selectCharacterTotalItems } from 'src/redux/character';
 import { buildQueryString } from 'src/utils/url';
 
 /**
  * Logic to handle search query enter and request initiation
  */
 export const useSearchQueryHandler = () => {
-  const [query, setQuery] = useState<string>('');
   const dispatch = useDispatch();
-  const totalAmount = useSelector(selectCharactersTotalAmount);
+  const totalAmount = useSelector(selectCharacterTotalItems);
+
+  const [query, setQuery] = useState<string>('');
 
   const canReset = totalAmount > 0 || query !== '';
 
@@ -25,14 +26,14 @@ export const useSearchQueryHandler = () => {
 
       const queryString = buildQueryString({ name: query });
 
-      dispatch(resetState());
+      dispatch(resetSearch());
       dispatch(searchCharacters(queryString));
     },
     [dispatch, query]
   );
 
   const handleReset = useCallback(() => {
-    dispatch(resetState());
+    dispatch(resetSearch());
     setQuery('');
   }, [dispatch, setQuery]);
 

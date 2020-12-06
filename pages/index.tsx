@@ -29,7 +29,6 @@ const Home = () => {
           <CssBaseline />
 
           <SearchBox />
-
           <SearchResults />
         </Container>
       </Provider>

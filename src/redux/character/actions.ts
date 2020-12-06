@@ -5,12 +5,11 @@ import { ApiResponse, Character } from 'src/types';
 
 import { characterSliceName } from './constants';
 
-export const changePage = createAction<number>(`${characterSliceName}/changePage`);
+export const openPage = createAction<number>(`${characterSliceName}/openPage`);
+export const resetSearch = createAction(`${characterSliceName}/resetSearch`);
 
-export const resetState = createAction(`${characterSliceName}/resetState`);
-
-export const openDetails = createAction<number>(`${characterSliceName}/openDetails`);
-export const closeDetails = createAction(`${characterSliceName}/closeDetails`);
+export const openCharacterDetails = createAction<number>(`${characterSliceName}/openCharacterDetails`);
+export const closeCharacterDetails = createAction(`${characterSliceName}/closeCharacterDetails`);
 
 export const searchCharacters = createAsyncThunk(`${characterSliceName}/searchCharacters`, (params: string) =>
   apiCall<ApiResponse<Character>>(`https://rickandmortyapi.com/api/character?${params}`)

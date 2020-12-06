@@ -9,13 +9,10 @@ export const selectCharacter = (state: RootState) => state.character;
 
 export const characterSelectors = charactersAdapter.getSelectors(selectCharacter);
 
-export const selectCharactersInternalPage = (state: RootState) => selectCharacter(state).internalPage;
-
-export const selectCharactersTotalAmount = (state: RootState) => selectCharacter(state).totalAmount;
-
+export const selectCharacterInternalPage = (state: RootState) => selectCharacter(state).internalPage;
+export const selectCharacterTotalItems = (state: RootState) => selectCharacter(state).totalItems;
 export const selectCharacterState = (state: RootState) => selectCharacter(state).loading;
-
-export const selectOpenedCharacterId = (state: RootState) => selectCharacter(state).openCharacterId;
+export const selectOpenedCharacterId = (state: RootState) => selectCharacter(state).openedCharacterId;
 
 export const selectOpenedCharacter = createSelector(
   selectOpenedCharacterId,
@@ -31,7 +28,7 @@ export const selectOpenedCharacter = createSelector(
 
 export const selectCharactersList = createSelector(
   characterSelectors.selectAll,
-  selectCharactersInternalPage,
+  selectCharacterInternalPage,
   (characters, internalPage) => {
     return characters.slice((internalPage - 1) * internalPageSize, internalPage * internalPageSize);
   }
