@@ -13,6 +13,7 @@ export const selectCharacterInternalPage = (state: RootState) => selectCharacter
 export const selectCharacterTotalItems = (state: RootState) => selectCharacter(state).totalItems;
 export const selectCharacterState = (state: RootState) => selectCharacter(state).loading;
 export const selectOpenedCharacterId = (state: RootState) => selectCharacter(state).openedCharacterId;
+export const selectCharacterLoadedStatus = (state: RootState) => selectCharacter(state).loaded;
 
 export const selectOpenedCharacter = createSelector(
   selectOpenedCharacterId,

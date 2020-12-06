@@ -5,4 +5,5 @@ export * from './EpisodesList/EpisodesList';
 export * from './Pagination/Pagination';
 export * from './SearchBox/SearchBox';
 export * from './SearchResults/SearchResults';
+export * from './messages/WelcomeMessage/WelcomeMessage';
 export * from './Loader';

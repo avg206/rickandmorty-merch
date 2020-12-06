@@ -2,31 +2,41 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Loader, CharacterView, Pagination, CharacterModal } from 'src/components';
-import { selectCharacterState, selectCharactersList } from 'src/redux/character';
+import { WelcomeMessage, NoResultsMessage } from 'src/components/messages';
+import { selectCharacterState, selectCharactersList, selectCharacterLoadedStatus } from 'src/redux/character';
 
 import { useCharacterPagination, useCharacterOpener } from './hooks';
 
 export const SearchResults: FC = () => {
   const loading = useSelector(selectCharacterState);
+  const loaded = useSelector(selectCharacterLoadedStatus);
   const characters = useSelector(selectCharactersList);
   const pagination = useCharacterPagination();
   const onCharacterOpen = useCharacterOpener();
 
-  const hasAnyCharacterLoaded = characters.length > 0;
+  const anyCharacterLoaded = characters.length > 0;
 
   if (loading) {
     return <Loader />;
   }
 
-  return (
-    <>
-      {characters.map((character) => (
-        <CharacterView key={character.id} character={character} onCharacterOpen={onCharacterOpen} />
-      ))}
+  if (loaded && anyCharacterLoaded) {
+    return (
+      <>
+        {characters.map((character) => (
+          <CharacterView key={character.id} character={character} onCharacterOpen={onCharacterOpen} />
+        ))}
 
-      {hasAnyCharacterLoaded && <Pagination {...pagination} />}
+        <Pagination {...pagination} />
 
-      <CharacterModal />
-    </>
-  );
+        <CharacterModal />
+      </>
+    );
+  }
+
+  if (loaded && !anyCharacterLoaded) {
+    return <NoResultsMessage />;
+  }
+
+  return <WelcomeMessage />;
 };

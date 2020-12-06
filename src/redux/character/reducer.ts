@@ -9,6 +9,7 @@ import { characterSliceName } from './constants';
 
 interface CharacterState {
   loading: boolean;
+  loaded?: boolean;
   totalItems: number;
   internalPage: number;
   nextParams?: string;
@@ -37,6 +38,7 @@ const characterReducer = createReducer(initialState, (builder) => {
     .addCase(searchCharacters.fulfilled, (state, action) => {
       state.totalItems = action.payload.info.count;
       state.nextParams = getQueryStringFromUrl(action.payload.info.next);
+      state.loaded = true;
 
       charactersAdapter.addMany(state, action.payload.results);
     })
@@ -51,6 +53,7 @@ const characterReducer = createReducer(initialState, (builder) => {
     .addMatcher(actionTypeEndsWith(characterSliceName, '/rejected'), (state, action) => {
       state.loading = false;
       state.error = action.error;
+      state.loaded = true;
     });
 });
 
