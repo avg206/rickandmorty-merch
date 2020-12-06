@@ -1,15 +1,26 @@
 import React, { FC } from 'react';
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 
-import { Episode } from 'src/types';
+import { Loader } from 'src/components';
 
+import { useEpisodesList } from './hooks';
 import { EpisodesListContainer } from './styled';
 
 interface EpisodesListProps {
-  episodes: Episode[];
+  episodes: string[];
 }
 
 export const EpisodesList: FC<EpisodesListProps> = ({ episodes }) => {
+  const episodesList = useEpisodesList(episodes);
+
+  if (episodes.length === 0) {
+    return null;
+  }
+
+  if (episodesList.length === 0) {
+    return <Loader />;
+  }
+
   return (
     <EpisodesListContainer>
       <Table>
@@ -21,7 +32,7 @@ export const EpisodesList: FC<EpisodesListProps> = ({ episodes }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {episodes.map((episode) => (
+          {episodesList.map((episode) => (
             <TableRow key={episode.id}>
               <TableCell component="th" scope="row">
                 {episode.episode}

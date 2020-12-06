@@ -1,6 +1,7 @@
 import React, { FC, forwardRef } from 'react';
 import { Button, Grid, Typography } from '@material-ui/core';
 
+import { EpisodesList } from 'src/components';
 import { Character } from 'src/types';
 
 import { useCharacterDetails, useCallToAction } from './hooks';
@@ -14,8 +15,6 @@ import {
   CharacterDetailsButtonContainer,
   CharacterDetailsCloseButton,
 } from './styled';
-// import { EpisodesList } from './components';
-
 interface CharacterDetailsProps {
   character: Character;
   onClose: () => void;
@@ -56,9 +55,9 @@ export const CharacterDetails: FC<CharacterDetailsProps> = forwardRef(({ charact
         </Button>
       </CharacterDetailsButtonContainer>
 
-      {/*<Grid container>*/}
-      {/*  <EpisodesList episodes={character.episode} />*/}
-      {/*</Grid>*/}
+      <Grid container>
+        <EpisodesList episodes={character.episode} />
+      </Grid>
     </CharacterDetailsContainer>
   );
 });

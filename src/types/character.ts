@@ -1,5 +1,3 @@
-import { Episode } from './episode';
-
 export enum CharacterStatus {
   Alive = 'Alive',
   Dead = 'Dead',
@@ -27,6 +25,6 @@ export interface Character {
     name;
   };
   image: string;
-  episode: Episode[];
+  episode: string[];
   created: string;
 }

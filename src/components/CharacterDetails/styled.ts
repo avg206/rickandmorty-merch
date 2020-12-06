@@ -46,7 +46,7 @@ export const CharacterDetailsDetailsRow = styled('div')(({ theme }) => ({
 }));
 
 export const CharacterDetailsButtonContainer = styled(Grid)(({ theme }) => ({
-  margin: theme.spacing(6, 0, 2),
+  margin: theme.spacing(6, 0, 6),
   justifyContent: 'center',
 }));
 
