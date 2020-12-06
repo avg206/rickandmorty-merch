@@ -1,8 +1,7 @@
-import { Box, styled } from '@material-ui/core';
+import { TableContainer, styled } from '@material-ui/core';
 
-export const EpisodesListContainer = styled(Box)(({ theme }) => ({
+export const EpisodesListContainer = styled(TableContainer)(({ theme }) => ({
   width: '100%',
-  padding: theme.spacing(2, 0),
   display: 'flex',
   flexDirection: 'row',
 }));

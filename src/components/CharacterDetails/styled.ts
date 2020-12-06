@@ -12,6 +12,7 @@ export const CharacterDetailsContainer = styled(Paper)(({ theme }) => ({
   height: '100vh',
   left: '50%',
   transform: 'translate(-50%, 0)',
+  overflowY: 'auto',
 }));
 
 export const CharacterDetailsAvatar = styled(Avatar)(({ theme }) => ({

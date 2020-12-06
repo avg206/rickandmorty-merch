@@ -23,7 +23,7 @@ export const EpisodesList: FC<EpisodesListProps> = ({ episodes }) => {
 
   return (
     <EpisodesListContainer>
-      <Table>
+      <Table size="small" stickyHeader>
         <TableHead>
           <TableRow>
             <TableCell>Episode</TableCell>
