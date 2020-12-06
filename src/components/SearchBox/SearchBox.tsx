@@ -9,21 +9,23 @@ export const SearchBox = () => {
 
   return (
     <SearchBoxContainer>
-      <Grid container spacing={2}>
-        <SearchBoxInput>
-          <TextField label="Search query" value={query} onChange={handleInputChange} fullWidth />
-        </SearchBoxInput>
+      <form onSubmit={handleSubmit}>
+        <Grid container spacing={2}>
+          <SearchBoxInput>
+            <TextField label="Search query" value={query} onChange={handleInputChange} fullWidth />
+          </SearchBoxInput>
 
-        <SearchBoxButtonGrid>
-          <SearchBoxButton variant="contained" color="primary" onClick={handleSubmit}>
-            Search
-          </SearchBoxButton>
+          <SearchBoxButtonGrid>
+            <SearchBoxButton variant="contained" color="primary" type="submit">
+              Search
+            </SearchBoxButton>
 
-          <SearchBoxButton variant="contained" disabled={!canReset} onClick={handleReset}>
-            Reset
-          </SearchBoxButton>
-        </SearchBoxButtonGrid>
-      </Grid>
+            <SearchBoxButton variant="contained" disabled={!canReset} onClick={handleReset}>
+              Reset
+            </SearchBoxButton>
+          </SearchBoxButtonGrid>
+        </Grid>
+      </form>
     </SearchBoxContainer>
   );
 };

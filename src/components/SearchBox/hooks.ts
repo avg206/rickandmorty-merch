@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from 'react';
+import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { searchCharacters, resetState, selectCharactersTotalAmount } from 'src/redux/character';
@@ -12,17 +12,24 @@ export const useSearchQueryHandler = () => {
   const dispatch = useDispatch();
   const totalAmount = useSelector(selectCharactersTotalAmount);
 
+  const canReset = totalAmount > 0 || query !== '';
+
   const handleInputChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => setQuery(event.currentTarget.value),
     []
   );
 
-  const handleSubmit = useCallback(() => {
-    const queryString = buildQueryString({ name: query });
+  const handleSubmit = useCallback(
+    (event: FormEvent) => {
+      event.preventDefault();
 
-    dispatch(resetState());
-    dispatch(searchCharacters(queryString));
-  }, [dispatch, query]);
+      const queryString = buildQueryString({ name: query });
+
+      dispatch(resetState());
+      dispatch(searchCharacters(queryString));
+    },
+    [dispatch, query]
+  );
 
   const handleReset = useCallback(() => {
     dispatch(resetState());
@@ -34,6 +41,6 @@ export const useSearchQueryHandler = () => {
     handleInputChange,
     handleSubmit,
     handleReset,
-    canReset: totalAmount > 0 || query !== '',
+    canReset,
   };
 };
