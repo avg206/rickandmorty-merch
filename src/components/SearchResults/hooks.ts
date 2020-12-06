@@ -27,18 +27,14 @@ export const useCharacterPagination = (): PaginationConfig => {
   }, [dispatch, internalPage]);
 
   const onNext = useCallback(() => {
-    const newPage = internalPage + 1;
-
     // If our virtual page is grater then actual amount of entities, we need to do next API call
-    if (newPage * internalPageSize > internalTotalAmount) {
-      if (!nextParams) {
-        return;
-      }
-
+    if ((internalPage + 1) * internalPageSize > internalTotalAmount && nextParams) {
       dispatch(searchCharacters(nextParams));
     }
 
-    dispatch(changePage(newPage));
+    if (internalPage * internalPageSize < totalAmount) {
+      dispatch(changePage(internalPage + 1));
+    }
   }, [dispatch, internalPage, internalTotalAmount, nextParams]);
 
   return {
