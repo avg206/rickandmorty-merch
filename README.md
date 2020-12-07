@@ -1,6 +1,6 @@
 # Rick and Morty Characters
 
-Demo: https://avg206.github.io/rickandmorty-merch/index.html
+Demo: https://avg206.github.io/rickandmorty-merch/
 
 ## Getting Started
 
